@@ -12,7 +12,7 @@ class ProductDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProductController());
+    final controller = Get.find<ProductController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -75,14 +75,14 @@ class ProductDescription extends StatelessWidget {
                             TextSpan(
                               text: "Last bid Price: \$20.00 ",
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 12,
                                 color: AppColor.textColor,
                               ),
                               children: [
                                 TextSpan(
                                   text: "(10% discount)",
                                   style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                     color: AppColor.hintColor,
                                   ),

@@ -4,6 +4,7 @@ import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/common/widgets/app_text_field.dart';
 import 'package:test_project/core/constants/app_assets.dart';
 import 'package:test_project/core/constants/app_color.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 import 'package:test_project/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:test_project/features/auth/presentation/views/forgot_password_screen.dart';
 import 'package:test_project/features/auth/presentation/views/signup_screen.dart';
@@ -61,20 +62,20 @@ class SigninScreen extends StatelessWidget {
               AppButton(
                 text: "Sign In",
                 onPressed: () async {
-                  await authController.signIn(
+                  final isLogedIn = await authController.signIn(
                     emailController.text,
                     passwordController.text,
                   );
-                  // if (isLogedIn) {
-                  //   Get.offAllNamed(AppRoutes.bottomNav);
-                  // } else {
-                  //   Get.snackbar(
-                  //     "Error",
-                  //     "Invalid email or password",
-                  //     backgroundColor: Colors.red,
-                  //     colorText: Colors.white,
-                  //   );
-                  // }
+                  if (isLogedIn) {
+                    Get.offAllNamed(AppRoutes.bottomNav);
+                  } else {
+                    Get.snackbar(
+                      "Error",
+                      "Invalid email or password",
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                    );
+                  }
                 },
               ),
               SizedBox(height: 24),

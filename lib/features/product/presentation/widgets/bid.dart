@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/common/widgets/app_text_field.dart';
 import 'package:test_project/core/constants/app_color.dart';
+import 'package:test_project/features/product/presentation/controllers/product_controller.dart';
 import 'package:test_project/features/product/presentation/widgets/bid_placed.dart';
 
 class Bid extends StatelessWidget {
@@ -10,6 +11,7 @@ class Bid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProductController>();
     final bidPriceController = TextEditingController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,6 +82,7 @@ class Bid extends StatelessWidget {
         ),
         SizedBox(height: 12),
         AppButton(text: "Bid Now", onPressed: () {
+          controller.isBidPlaced.value = true;
           Get.to(() => BidPlaced());
         }),
         SizedBox(height: 40),

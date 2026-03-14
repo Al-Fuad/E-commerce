@@ -25,10 +25,7 @@ class AppPages {
   const AppPages._();
 
   static final pages = <GetPage>[
-    GetPage(
-      name: AppRoutes.splash,
-      page: () => const SplashScreen(),
-    ),
+    GetPage(name: AppRoutes.splash, page: () => const SplashScreen()),
     GetPage(
       name: AppRoutes.onboarding,
       page: () => const OnboardingScreen(),
@@ -57,7 +54,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.category,
       page: () {
-        final title = Get.arguments as String;
+        final title = Get.arguments['title'] as String;
         return CategoryScreen(title: title);
       },
       binding: CategoryBinding(),
@@ -68,10 +65,7 @@ class AppPages {
         final args = Get.arguments as Map<String, dynamic>;
         final isBid = args['isBid'] as bool;
         final isBidPlaced = args['isBidPlaced'] as bool;
-        return ProductScreen(
-          isBid: isBid,
-          isBidPlaced: isBidPlaced,
-        );
+        return ProductScreen(isBid: isBid, isBidPlaced: isBidPlaced);
       },
       binding: ProductBinding(),
     ),
@@ -90,10 +84,10 @@ class AppPages {
       page: () => const ChatScreen(),
       binding: ChatBinding(),
     ),
-     GetPage(
-       name: AppRoutes.bidPlaced,
-       page: () => const BidPlaced(),
-       binding: ProductBinding(),
-     )
+    GetPage(
+      name: AppRoutes.bidPlaced,
+      page: () => const BidPlaced(),
+      binding: ProductBinding(),
+    ),
   ];
 }

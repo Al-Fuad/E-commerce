@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_project/core/constants/api_constant.dart';
 import 'package:test_project/features/auth/data/datasources/auth_remote_datasource.dart';
-import 'package:test_project/features/auth/data/models/auth_model.dart';
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   final Dio dio;
@@ -10,7 +9,8 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   AuthRemoteDatasourceImpl({required this.dio});
 
   @override
-  Future<AuthModel> signIn(String email, String password) async {
+  Future<bool> signIn(String email, String password) async {
+    return true;
     try {
       final response = await dio.post(
         ApiConstant.login,
@@ -21,17 +21,18 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
         if (token != null) {
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('auth_token', token);
+          return true;
         }
       }
-      return AuthModel.fromJson(response.data['authorization']);
+      return false;
     } catch (e) {
       print('Error during sign-in: $e');
-      rethrow;
+      return false;
     }
   }
 
   @override
-  Future<void> signUp(
+  Future<bool> signUp(
     String firstName,
     String lastName,
     String email,
@@ -39,6 +40,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     String location,
     String password,
   ) async {
+    return true;
     try {
       final response = await dio.post(
         ApiConstant.register,
@@ -51,24 +53,37 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
           'password': password,
         },
       );
-      print('Sign Up Response: ${response.statusCode} - ${response.data}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('Sign Up Response: ${response.statusCode} - ${response.data}');
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       print('Error during sign-up: $e');
+      return false;
     }
   }
 
   @override
-  Future<void> forgotPassword(String email) async {
+  Future<bool> forgotPassword(String email) async {
+    return true;
     try {
       final response = await dio.post(
         ApiConstant.forgotPassword,
         data: {'email': email},
       );
-      print(
-        'Forgot Password Response: ${response.statusCode} - ${response.data}',
-      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(
+          'Forgot Password Response: ${response.statusCode} - ${response.data}',
+        );
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       print('Error during forgot password: $e');
+      return false;
     }
   }
 }

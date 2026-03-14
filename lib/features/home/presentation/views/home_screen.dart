@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/core/constants/app_assets.dart';
-import 'package:test_project/features/category/presentation/views/category_screen.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 import 'package:test_project/features/home/presentation/widgets/product_card.dart';
 import 'package:test_project/features/home/presentation/widgets/section.dart';
 
@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Container(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(18),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -95,28 +95,30 @@ class HomeScreen extends StatelessWidget {
                               SizedBox(
                                 child: GridView.builder(
                                   shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  // physics: NeverScrollableScrollPhysics(),
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 4,
-                                        mainAxisSpacing: 10,
+                                        mainAxisSpacing: 12,
+                                        childAspectRatio: 0.9,
                                       ),
                                   itemCount: AppAssets.categoryIcons.length,
                                   itemBuilder: (context, index) =>
                                       GestureDetector(
                                         onTap: () {
-                                          Get.to(
-                                            () => CategoryScreen(
-                                              title: AppAssets
+                                          Get.toNamed(
+                                            AppRoutes.category,
+                                            arguments: {
+                                              "title": AppAssets
                                                   .categoryNames[index],
-                                            ),
+                                            },
                                           );
                                         },
                                         child: Column(
                                           children: [
                                             Container(
-                                              width: 50,
-                                              height: 50,
+                                              width: 45,
+                                              height: 45,
                                               decoration: BoxDecoration(
                                                 color: Color(0xFFF1F0EE),
                                                 borderRadius:
@@ -149,10 +151,11 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
-                          Get.to(
-                            () => CategoryScreen(
-                              title: AppAssets.categoryNames[index],
-                            ),
+                          Get.toNamed(
+                            AppRoutes.category,
+                            arguments: {
+                              "title": AppAssets.categoryNames[index],
+                            },
                           );
                         },
                         child: Column(
@@ -189,7 +192,10 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (context, index) => Section(
                     title: "Fashoin Products",
                     seeAllFunction: () {
-                      Get.to(() => const CategoryScreen(title: "Fashoin"));
+                      Get.toNamed(
+                        AppRoutes.category,
+                        arguments: {"title": "Fashoin"},
+                      );
                     },
                     child: SizedBox(
                       height: 280,

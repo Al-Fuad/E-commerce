@@ -24,7 +24,11 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: () {
+        print("Button start: $text");
+        onPressed!();
+        print("Button pressed: $text");
+      },
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: color,

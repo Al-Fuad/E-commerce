@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/core/constants/app_assets.dart';
 import 'package:test_project/core/constants/app_color.dart';
-import 'package:test_project/features/product/presentation/views/product_screen.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, this.isFull = false});
@@ -13,7 +13,10 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => const ProductScreen());
+        Get.toNamed(
+          AppRoutes.product,
+          arguments: {"isBid": false, "isBidPlaced": false},
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -18,7 +18,6 @@ class SplashScreen extends StatelessWidget {
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
       splashIconSize: 300,
-      duration: 1000,
     );
   }
 }

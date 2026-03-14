@@ -18,11 +18,12 @@ class OnboardingScreen extends GetView<OnboardingController> {
           left: 20,
           right: 20,
           top: 61,
-          bottom: 200,
+          bottom: 20,
         ),
         child: Column(
           children: [
             Expanded(
+              flex: 6,
               child: PageView.builder(
                 controller: controller.pageController,
                 scrollDirection: Axis.horizontal,
@@ -40,29 +41,30 @@ class OnboardingScreen extends GetView<OnboardingController> {
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
                       Text(
                         onboardingData[index].description,
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 64),
+                      const SizedBox(height: 50),
                       Stack(
+                        alignment: Alignment.bottomCenter,
                         clipBehavior: Clip.none,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.asset(
                               onboardingData[index].image,
-                              width: 400,
-                              height: 400,
+                              width: 350,
+                              height: 350,
                               fit: BoxFit.cover,
                             ),
                           ),
                           Positioned(
                             bottom: -25,
-                            right: 100,
-                            left: 100,
+
                             child: AppButton(
                               size: const Size(200, 50),
                               text: index == onboardingData.length - 1
@@ -104,6 +106,7 @@ class OnboardingScreen extends GetView<OnboardingController> {
                 ),
               ),
             ),
+            Spacer(),
           ],
         ),
       ),

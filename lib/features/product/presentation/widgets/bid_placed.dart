@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/constants/app_color.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 import 'package:test_project/features/product/presentation/views/product_screen.dart';
 
 class BidPlaced extends StatelessWidget {
@@ -10,6 +11,16 @@ class BidPlaced extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Bid Placed"),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Get.offAllNamed(AppRoutes.bottomNav);
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(right: 15, left: 15, top: 200),
         child: Card(
@@ -36,10 +47,9 @@ class BidPlaced extends StatelessWidget {
                 AppButton(
                   text: "Back to Product",
                   onPressed: () {
-                    Get.to(() => ProductScreen(
-                          isBid: false,
-                          isBidPlaced: true,
-                    ));
+                    Get.to(
+                      () => ProductScreen(isBid: false, isBidPlaced: true),
+                    );
                   },
                 ),
               ],

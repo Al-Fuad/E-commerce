@@ -17,7 +17,8 @@ class SignupScreen extends StatelessWidget {
     final TextEditingController firstNameController = TextEditingController();
     final TextEditingController lastNameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
-    final TextEditingController contactNumberController = TextEditingController();
+    final TextEditingController contactNumberController =
+        TextEditingController();
     final TextEditingController locationController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final authController = Get.find<AuthController>();
@@ -36,11 +37,23 @@ class SignupScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 24),
-              AppTextField(controller: firstNameController, label: "First name", hint: "Enter your first name"),
+              AppTextField(
+                controller: firstNameController,
+                label: "First name",
+                hint: "Enter your first name",
+              ),
               SizedBox(height: 16),
-              AppTextField(controller: lastNameController, label: "Last name", hint: "Enter your last name"),
+              AppTextField(
+                controller: lastNameController,
+                label: "Last name",
+                hint: "Enter your last name",
+              ),
               SizedBox(height: 16),
-              AppTextField(controller: emailController, label: "Email", hint: "Enter your email"),
+              AppTextField(
+                controller: emailController,
+                label: "Email",
+                hint: "Enter your email",
+              ),
               SizedBox(height: 16),
               AppTextField(
                 controller: contactNumberController,
@@ -49,14 +62,22 @@ class SignupScreen extends StatelessWidget {
                 hint: "Enter your contact number",
               ),
               SizedBox(height: 16),
-              AppTextField(controller: locationController, label: "Location", hint: "Enter your location"),
+              AppTextField(
+                controller: locationController,
+                label: "Location",
+                hint: "Enter your location",
+              ),
               SizedBox(height: 16),
-              AppTextField(controller: passwordController, label: "Password", hint: "Enter your password"),
+              AppTextField(
+                controller: passwordController,
+                label: "Password",
+                hint: "Enter your password",
+              ),
               SizedBox(height: 43),
               AppButton(
                 text: "Sign Up",
-                onPressed: () {
-                  authController.signUp(
+                onPressed: () async {
+                  final isSignedUp = await authController.signUp(
                     firstNameController.text,
                     lastNameController.text,
                     emailController.text,
@@ -64,6 +85,16 @@ class SignupScreen extends StatelessWidget {
                     locationController.text,
                     passwordController.text,
                   );
+                  if (isSignedUp) {
+                    Get.to(() => SigninScreen());
+                  } else {
+                    Get.snackbar(
+                      "Error",
+                      "Failed to sign up. Please try again.",
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                    );
+                  }
                 },
               ),
               SizedBox(height: 24),
