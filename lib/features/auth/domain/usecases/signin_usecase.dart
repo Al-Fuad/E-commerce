@@ -5,7 +5,7 @@ class SigninUsecase {
 
   SigninUsecase(this.repository);
 
-  Future<void> execute(String email, String password) async {
+  Future<void> call(String email, String password) async {
     return await repository.signIn(email, password);
   }
 }

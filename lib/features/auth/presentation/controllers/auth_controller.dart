@@ -16,7 +16,7 @@ class AuthController extends GetxController {
   });
 
   Future<void> signIn(String email, String password) async {
-    await signinUsecase.execute(email, password);
+    await signinUsecase(email, password);
   }
 
   Future<void> signUp(
@@ -27,7 +27,7 @@ class AuthController extends GetxController {
     String location,
     String password,
   ) async {
-    await signupUsecase.execute(
+    await signupUsecase(
       firstName,
       lastName,
       email,
@@ -38,6 +38,6 @@ class AuthController extends GetxController {
   }
 
   Future<void> forgotPassword(String email) async {
-    await forgotPasswordUsecase.execute(email);
+    await forgotPasswordUsecase(email);
   }
 }

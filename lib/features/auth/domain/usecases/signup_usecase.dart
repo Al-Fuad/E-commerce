@@ -5,7 +5,7 @@ class SignupUsecase {
 
   SignupUsecase(this.repository);
 
-  Future<void> execute(
+  Future<void> call(
     String firstName,
     String lastName,
     String email,

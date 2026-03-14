@@ -5,7 +5,7 @@ class ForgotPasswordUsecase {
 
   ForgotPasswordUsecase(this.authRepository);
 
-  Future<void> execute(String email) async {
+  Future<void> call(String email) async {
     await authRepository.forgotPassword(email);
   }
 }
