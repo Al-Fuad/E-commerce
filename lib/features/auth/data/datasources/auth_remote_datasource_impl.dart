@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_project/core/constants/api_constant.dart';
 import 'package:test_project/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:test_project/features/auth/data/models/auth_model.dart';
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   final Dio dio;
@@ -9,7 +10,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   AuthRemoteDatasourceImpl({required this.dio});
 
   @override
-  Future<void> signIn(String email, String password) async {
+  Future<AuthModel> signIn(String email, String password) async {
     try {
       final response = await dio.post(
         ApiConstant.login,
@@ -22,9 +23,10 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
           await prefs.setString('auth_token', token);
         }
       }
-      print('Sign In Response: ${response.statusCode} - ${response.data}');
+      return AuthModel.fromJson(response.data['authorization']);
     } catch (e) {
       print('Error during sign-in: $e');
+      rethrow;
     }
   }
 
@@ -62,7 +64,9 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
         ApiConstant.forgotPassword,
         data: {'email': email},
       );
-      print('Forgot Password Response: ${response.statusCode} - ${response.data}');
+      print(
+        'Forgot Password Response: ${response.statusCode} - ${response.data}',
+      );
     } catch (e) {
       print('Error during forgot password: $e');
     }

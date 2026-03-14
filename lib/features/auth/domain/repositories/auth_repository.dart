@@ -1,5 +1,7 @@
+import 'package:test_project/features/auth/domain/entities/auth_entity.dart';
+
 abstract class AuthRepository {
-  Future<void> signIn(String email, String password);
+  Future<AuthEntity> signIn(String email, String password);
   Future<void> signUp(
     String firstName,
     String lastName,

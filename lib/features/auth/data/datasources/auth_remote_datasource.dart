@@ -1,5 +1,7 @@
+import 'package:test_project/features/auth/data/models/auth_model.dart';
+
 abstract class AuthRemoteDatasource {
-  Future<void> signIn(String email, String password);
+  Future<AuthModel> signIn(String email, String password);
   Future<void> signUp(
     String firstName,
     String lastName,
