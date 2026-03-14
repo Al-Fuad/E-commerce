@@ -2,7 +2,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:test_project/core/constants/app_assets.dart';
-import 'package:test_project/features/bottom_nav/views/bottom_nav.dart';
+import 'package:test_project/core/routes/app_routes.dart';
+import 'package:test_project/features/onboarding/presentation/views/onboarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -12,7 +13,8 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       backgroundColor: Color(0xFFde3526),
       splash: Image.asset(AppAssets.logoWhite),
-      nextScreen: const BottomNav(),
+      nextRoute: AppRoutes.onboarding,
+      nextScreen: const OnboardingScreen(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
       splashIconSize: 300,
