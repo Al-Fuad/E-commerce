@@ -40,6 +40,7 @@ class SigninScreen extends StatelessWidget {
               ),
               SizedBox(height: 16),
               AppTextField(
+                isObscureText: true,
                 controller: passwordController,
                 label: "Password",
                 hint: "Enter your password",
