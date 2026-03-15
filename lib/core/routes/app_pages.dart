@@ -54,7 +54,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.category,
       page: () {
-        final title = Get.arguments['title'] as String;
+        final args = (Get.arguments is Map)
+            ? Map<String, dynamic>.from(Get.arguments as Map)
+            : <String, dynamic>{};
+        final title = args['title'] as String? ?? "Category";
         return CategoryScreen(title: title);
       },
       binding: CategoryBinding(),
@@ -62,9 +65,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.product,
       page: () {
-        final args = Get.arguments as Map<String, dynamic>;
-        final isBid = args['isBid'] as bool;
-        final isBidPlaced = args['isBidPlaced'] as bool;
+        final args = (Get.arguments is Map)
+            ? Map<String, dynamic>.from(Get.arguments as Map)
+            : <String, dynamic>{};
+        final isBid = args['isBid'] as bool? ?? false;
+        final isBidPlaced = args['isBidPlaced'] as bool? ?? false;
         return ProductScreen(isBid: isBid, isBidPlaced: isBidPlaced);
       },
       binding: ProductBinding(),

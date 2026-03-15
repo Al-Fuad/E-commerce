@@ -95,7 +95,6 @@ class HomeScreen extends StatelessWidget {
                               SizedBox(
                                 child: GridView.builder(
                                   shrinkWrap: true,
-                                  // physics: NeverScrollableScrollPhysics(),
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 4,

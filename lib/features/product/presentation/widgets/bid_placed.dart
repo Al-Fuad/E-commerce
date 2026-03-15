@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/constants/app_color.dart';
 import 'package:test_project/core/routes/app_routes.dart';
-import 'package:test_project/features/product/presentation/views/product_screen.dart';
 
 class BidPlaced extends StatelessWidget {
   const BidPlaced({super.key});
@@ -17,7 +16,7 @@ class BidPlaced extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Get.offAllNamed(AppRoutes.bottomNav);
+            Get.offNamedUntil(AppRoutes.product, (route) => false);
           },
         ),
       ),
@@ -47,9 +46,7 @@ class BidPlaced extends StatelessWidget {
                 AppButton(
                   text: "Back to Product",
                   onPressed: () {
-                    Get.to(
-                      () => ProductScreen(isBid: false, isBidPlaced: true),
-                    );
+                    Get.offNamedUntil(AppRoutes.product, (route) => false);
                   },
                 ),
               ],

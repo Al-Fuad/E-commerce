@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/constants/app_color.dart';
-import 'package:test_project/features/product/presentation/views/product_screen.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 
 class ProductCardWithBid extends StatelessWidget {
-  const ProductCardWithBid({
-    super.key,
-  });
+  const ProductCardWithBid({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -47,37 +47,20 @@ class ProductCardWithBid extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          Text(
-            "Size XL (New Condition)",
-            style: TextStyle(fontSize: 12),
-          ),
+          Text("Size XL (New Condition)", style: TextStyle(fontSize: 12)),
           SizedBox(height: 5),
           Row(
             children: [
-              Icon(
-                Icons.location_on,
-                size: 16,
-                color: AppColor.grey,
-              ),
+              Icon(Icons.location_on, size: 16, color: AppColor.grey),
               SizedBox(width: 4),
               Text("New York, USA"),
               SizedBox(width: 8),
-              Icon(
-                Icons.timer_sharp,
-                size: 16,
-                color: AppColor.grey,
-              ),
-              Text(
-                "Aug 6 ,13:55",
-                style: TextStyle(fontSize: 12),
-              ),
+              Icon(Icons.timer_sharp, size: 16, color: AppColor.grey),
+              Text("Aug 6 ,13:55", style: TextStyle(fontSize: 12)),
               Spacer(),
               Text(
                 "12h :12m :30s",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: AppColor.primaryColor,
-                ),
+                style: TextStyle(fontSize: 12, color: AppColor.primaryColor),
               ),
             ],
           ),
@@ -87,7 +70,7 @@ class ProductCardWithBid extends StatelessWidget {
               Expanded(
                 child: AppButton(
                   onPressed: () {
-                    Get.to(() => ProductScreen(isBid: true));
+                    Get.toNamed(AppRoutes.product, arguments: {"isBid": true, "categoryTitle": title});
                   },
                   text: "Bid Now",
                   color: AppColor.white,
@@ -99,7 +82,7 @@ class ProductCardWithBid extends StatelessWidget {
               Expanded(
                 child: AppButton(
                   onPressed: () {
-                    Get.to(() => ProductScreen());
+                    Get.toNamed(AppRoutes.product);
                   },
                   text: "Buy Now",
                   textColor: AppColor.white,

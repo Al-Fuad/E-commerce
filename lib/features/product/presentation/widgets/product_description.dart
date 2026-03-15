@@ -98,7 +98,7 @@ class ProductDescription extends StatelessWidget {
                       text: "Place a Bid",
                       size: Size(100, 56),
                       onPressed: () {
-                        controller.isPlaceBid.value = true;
+                        controller.isBidButtonPressed.value = true;
                       },
                     ),
                   ],

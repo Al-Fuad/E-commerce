@@ -32,7 +32,8 @@ class CategoryScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   Expanded(
                     child: ListView.separated(
-                      itemBuilder: (context, index) => ProductCardWithBid(),
+                      itemBuilder: (context, index) =>
+                          ProductCardWithBid(title: title),
                       separatorBuilder: (context, index) =>
                           SizedBox(height: 12),
                       itemCount: 7,
