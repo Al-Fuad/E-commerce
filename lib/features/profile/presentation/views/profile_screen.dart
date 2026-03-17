@@ -66,7 +66,9 @@ class ProfileScreen extends StatelessWidget {
                   ProfileTile(
                     title: "Selling Items",
                     icon: Icons.shopping_bag,
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.sellingItems);
+                    },
                   ),
                   ProfileTile(
                     title: "Bid List",

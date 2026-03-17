@@ -1,6 +1,6 @@
-import 'package:test_project/features/bought_bid_items/presentation/models/item_enum.dart';
+import 'package:test_project/core/enums/item_enum.dart';
 
-class BoughtBidItemsModel {
+class ItemsModel {
   final String title;
   final String image;
   final String? description;
@@ -8,7 +8,7 @@ class BoughtBidItemsModel {
   final ItemEnum status;
   final int quantity;
 
-  BoughtBidItemsModel({
+  ItemsModel({
     required this.title,
     required this.image,
     this.description,

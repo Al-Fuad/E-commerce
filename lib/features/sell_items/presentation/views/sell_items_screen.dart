@@ -4,141 +4,129 @@ import 'package:test_project/core/constants/app_assets.dart';
 import 'package:test_project/core/constants/app_color.dart';
 import 'package:test_project/core/enums/item_enum.dart';
 import 'package:test_project/core/models/items_model.dart';
-import 'package:test_project/features/bought_bid_items/presentation/controllers/bought_bid_items_controller.dart';
-import 'package:test_project/features/bought_bid_items/presentation/widgets/sub_tabs.dart';
+import 'package:test_project/features/sell_items/presentation/controllers/sell_items_controller.dart';
+import 'package:test_project/features/sell_items/presentation/widgets/sub_tabs.dart';
 
-class BoughtBidItemsScreen extends StatefulWidget {
-  const BoughtBidItemsScreen({super.key, this.isBidList = false});
-
-  final bool isBidList;
-
-  @override
-  State<BoughtBidItemsScreen> createState() => _BoughtBidItemsScreenState();
-}
-
-class _BoughtBidItemsScreenState extends State<BoughtBidItemsScreen> {
-  final controller = Get.find<BoughtBidItemsController>();
-  final List<String> tabs = [
-    "All Products",
-    "Pending",
-    "Delivered",
-    "Cancelled",
-    "Bid List",
-  ];
-
-  final items = [
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.pending,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.delivered,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.pending,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.delivered,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.pending,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.delivered,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.pending,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.delivered,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.cancelled,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.delivered,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.bidList,
-      quantity: 1,
-    ),
-    ItemsModel(
-      title: "Man Exclusive T-Shirt",
-      image: AppAssets.demoProduct,
-      description: "Size XL (New Condition)",
-      price: 100,
-      status: ItemEnum.bidList,
-      quantity: 1,
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    controller.selectedTabIndex.value = widget.isBidList ? 4 : 0;
-  }
+class SellItemsScreen extends StatelessWidget {
+  const SellItemsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SellItemsController>();
+
+    final List<String> tabs = [
+      "All Products",
+      "Pending",
+      "Completed",
+      "Cancelled",
+      "Bid List",
+    ];
+
+    final items = [
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.pending,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.delivered,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.pending,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.delivered,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.pending,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.delivered,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.pending,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.delivered,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.cancelled,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.delivered,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.bidList,
+        quantity: 1,
+      ),
+      ItemsModel(
+        title: "Man Exclusive T-Shirt",
+        image: AppAssets.demoProduct,
+        description: "Size XL (New Condition)",
+        price: 100,
+        status: ItemEnum.bidList,
+        quantity: 1,
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Obx(
           () => Text(
             controller.selectedTabIndex.value != 4
-                ? "Bought Items"
+                ? "Selling Items"
                 : "Bid List",
           ),
         ),
@@ -302,7 +290,9 @@ class ItemTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
-          status.name.toUpperCase(),
+          status == ItemEnum.delivered
+              ? "COMPLETED"
+              : status.name.toUpperCase(),
           style: TextStyle(
             color: status == ItemEnum.delivered
                 ? Colors.green

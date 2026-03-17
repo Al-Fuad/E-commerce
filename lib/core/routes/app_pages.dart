@@ -29,6 +29,8 @@ import 'package:test_project/features/onboarding/presentation/bindings/onboardin
 import 'package:test_project/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:test_project/features/product/presentation/bindings/product_binding.dart';
 import 'package:test_project/features/product/presentation/views/product_screen.dart';
+import 'package:test_project/features/sell_items/presentation/bindings/sell_items_bindings.dart';
+import 'package:test_project/features/sell_items/presentation/views/sell_items_screen.dart';
 import 'package:test_project/features/splash/views/splash_screen.dart';
 
 class AppPages {
@@ -150,6 +152,11 @@ class AppPages {
         return BoughtBidItemsScreen(isBidList: isBidList);
       },
       binding: BoughtBidItemsBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.sellingItems,
+      page: () => const SellItemsScreen(),
+      binding: SellItemsBindings(),
     ),
     GetPage(
       name: AppRoutes.language,
