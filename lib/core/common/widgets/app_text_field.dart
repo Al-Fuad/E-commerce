@@ -11,6 +11,8 @@ class AppTextField extends StatefulWidget {
     this.maxLines = 1,
     this.addMore = false,
     this.isObscureText = false,
+    this.suffixIcon,
+    this.prefixIcon,
   });
 
   final String? label;
@@ -20,6 +22,8 @@ class AppTextField extends StatefulWidget {
   final int maxLines;
   final bool addMore;
   final bool isObscureText;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -76,7 +80,8 @@ class _AppTextFieldState extends State<AppTextField> {
                       color: AppColor.hintColor,
                     ),
                   )
-                : null,
+                : widget.suffixIcon,
+            prefixIcon: widget.prefixIcon,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,

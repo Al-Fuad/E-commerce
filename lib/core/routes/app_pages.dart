@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_project/core/common/widgets/success_msg.dart';
 import 'package:test_project/core/routes/app_routes.dart';
 import 'package:test_project/features/add_product/presentation/bindings/add_post_binding.dart';
 import 'package:test_project/features/add_product/presentation/views/add_post_screen.dart';
@@ -11,17 +13,22 @@ import 'package:test_project/features/auth/presentation/views/signin_screen.dart
 import 'package:test_project/features/auth/presentation/views/signup_screen.dart';
 import 'package:test_project/features/bottom_nav/presentation/bindings/bottom_nav_binding.dart';
 import 'package:test_project/features/bottom_nav/presentation/views/bottom_nav.dart';
+import 'package:test_project/features/bought_bid_items/presentation/bindings/bought_bid_items_bindings.dart';
+import 'package:test_project/features/bought_bid_items/presentation/views/bought_bid_items_screen.dart';
 import 'package:test_project/features/category/presentation/bindings/category_binding.dart';
 import 'package:test_project/features/category/presentation/views/category_screen.dart';
 import 'package:test_project/features/chat/presentation/bindings/chat_binding.dart';
 import 'package:test_project/features/chat/presentation/views/chat_screen.dart';
 import 'package:test_project/features/inbox/presentation/bindings/inbox_binding.dart';
 import 'package:test_project/features/inbox/presentation/views/inbox_screen.dart';
+import 'package:test_project/features/language/presentation/bindings/language_binding.dart';
+import 'package:test_project/features/language/presentation/views/language_screen.dart';
+import 'package:test_project/features/notifications/presentation/bindings/notifications_binding.dart';
+import 'package:test_project/features/notifications/presentation/views/notifications_screen.dart';
 import 'package:test_project/features/onboarding/presentation/bindings/onboarding_binding.dart';
 import 'package:test_project/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:test_project/features/product/presentation/bindings/product_binding.dart';
 import 'package:test_project/features/product/presentation/views/product_screen.dart';
-import 'package:test_project/features/product/presentation/widgets/bid_placed.dart';
 import 'package:test_project/features/splash/views/splash_screen.dart';
 
 class AppPages {
@@ -70,6 +77,11 @@ class AppPages {
       binding: BottomNavBinding(),
     ),
     GetPage(
+      name: AppRoutes.notifications,
+      page: () => const NotificationsScreen(),
+      binding: NotificationsBinding(),
+    ),
+    GetPage(
       name: AppRoutes.category,
       page: () {
         final args = (Get.arguments is Map)
@@ -108,9 +120,41 @@ class AppPages {
       binding: ChatBinding(),
     ),
     GetPage(
-      name: AppRoutes.bidPlaced,
-      page: () => const BidPlaced(),
+      name: AppRoutes.successMsg,
+      page: () {
+        final args = (Get.arguments is Map)
+            ? Map<String, dynamic>.from(Get.arguments as Map)
+            : <String, dynamic>{};
+        final title = args['title'] as String? ?? "Success";
+        final description =
+            args['description'] as String? ?? "Your action was successful.";
+        final buttonText = args['buttonText'] as String? ?? "OK";
+        final onPressed = args['onPressed'] as VoidCallback? ?? () {};
+        return SuccessMsg(
+          title: title,
+          description: description,
+          buttonText: buttonText,
+          onPressed: onPressed,
+        );
+      },
       binding: ProductBinding(),
+    ),
+
+    GetPage(
+      name: AppRoutes.boughtBidItems,
+      page: () {
+        final args = (Get.arguments is Map)
+            ? Map<String, dynamic>.from(Get.arguments as Map)
+            : <String, dynamic>{};
+        final isBidList = args['isBidList'] as bool? ?? false;
+        return BoughtBidItemsScreen(isBidList: isBidList);
+      },
+      binding: BoughtBidItemsBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.language,
+      page: () => const LanguageScreen(),
+      binding: LanguageBinding(),
     ),
   ];
 }

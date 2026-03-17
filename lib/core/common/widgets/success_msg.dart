@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/constants/app_color.dart';
-import 'package:test_project/core/routes/app_routes.dart';
 
-class BidPlaced extends StatelessWidget {
-  const BidPlaced({super.key});
+class SuccessMsg extends StatelessWidget {
+  const SuccessMsg({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.buttonText,
+    required this.onPressed,
+  });
+
+  final String title;
+  final String description;
+  final String buttonText;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bid Placed"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.offNamedUntil(AppRoutes.product, (route) => false);
-          },
-        ),
+        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: onPressed),
       ),
       body: Padding(
         padding: const EdgeInsets.only(right: 15, left: 15, top: 200),
@@ -30,25 +32,28 @@ class BidPlaced extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.check_circle_outline, color: Colors.green, size: 80),
+                CircleAvatar(
+                  radius: 60,
+                  backgroundColor: AppColor.primaryColor,
+                  child: Icon(
+                    Icons.check_circle,
+                    color: AppColor.lightPrimaryColor,
+                    size: 80,
+                  ),
+                ),
                 SizedBox(height: 16),
                 Text(
-                  "Bid Placed Successfully!",
+                  title,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 8),
                 Text(
-                  "Your bid has been placed. We will notify you if you win the auction.",
+                  description,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
                 SizedBox(height: 24),
-                AppButton(
-                  text: "Back to Product",
-                  onPressed: () {
-                    Get.offNamedUntil(AppRoutes.product, (route) => false);
-                  },
-                ),
+                AppButton(text: buttonText, onPressed: onPressed),
               ],
             ),
           ),

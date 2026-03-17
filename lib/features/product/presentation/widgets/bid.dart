@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:test_project/core/common/widgets/app_button.dart';
 import 'package:test_project/core/common/widgets/app_text_field.dart';
 import 'package:test_project/core/constants/app_color.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 import 'package:test_project/features/product/presentation/controllers/product_controller.dart';
-import 'package:test_project/features/product/presentation/widgets/bid_placed.dart';
 
 class Bid extends StatelessWidget {
   const Bid({super.key});
@@ -83,7 +83,15 @@ class Bid extends StatelessWidget {
         SizedBox(height: 12),
         AppButton(text: "Bid Now", onPressed: () {
           controller.isBidPlaced.value = true;
-          Get.to(() => BidPlaced());
+          Get.toNamed(AppRoutes.successMsg, arguments: {
+            "title": "Bid Placed Successfully",
+            "description": "Your bid has been placed successfully. The seller will review your bid and get back to you.",
+            "buttonText": "Back to Product",
+            "onPressed": () {
+              Get.back();
+              Get.back();
+            },
+          });
         }),
         SizedBox(height: 40),
       ],

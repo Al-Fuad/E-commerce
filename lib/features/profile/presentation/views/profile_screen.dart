@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:test_project/core/constants/app_color.dart';
+import 'package:test_project/core/routes/app_routes.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -44,165 +46,54 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.person, color: AppColor.grey),
-                    title: Text(
-                      "My Profile",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.textColor,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
+                  ProfileTile(
+                    title: "My Profile",
+                    icon: Icons.person,
                     onTap: () {},
                   ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.favorite, color: AppColor.grey),
-                    title: Text(
-                      "Favorites",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
+                  ProfileTile(
+                    title: "Favorites",
+                    icon: Icons.favorite,
                     onTap: () {},
                   ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.shopping_bag, color: AppColor.grey),
-                    title: Text(
-                      "Bought Items",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
+                  ProfileTile(
+                    title: "Bought Items",
+                    icon: Icons.shopping_bag,
+                    onTap: () {
+                      Get.toNamed(AppRoutes.boughtBidItems);
+                    },
+                  ),
+                  ProfileTile(
+                    title: "Selling Items",
+                    icon: Icons.shopping_bag,
                     onTap: () {},
                   ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.shopping_bag, color: AppColor.grey),
-                    title: Text(
-                      "Selling Items",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
+                  ProfileTile(
+                    title: "Bid List",
+                    icon: Icons.gavel,
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoutes.boughtBidItems,
+                        arguments: {"isBidList": true},
+                      );
+                    },
+                  ),
+                  ProfileTile(
+                    title: "Notifications",
+                    icon: Icons.notifications,
                     onTap: () {},
                   ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.gavel, color: AppColor.grey),
-                    title: Text(
-                      "Bid List",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
+                  ProfileTile(
+                    title: "Account Settings",
+                    icon: Icons.person_add_alt_1,
                     onTap: () {},
                   ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.notifications, color: AppColor.grey),
-                    title: Text(
-                      "Notifications",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.person_add_alt_1, color: AppColor.grey),
-                    title: Text(
-                      "Account Settings",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    shape: Border(
-                      bottom: BorderSide(color: AppColor.lightGrey),
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(Icons.language, color: AppColor.grey),
-                    title: Text(
-                      "Language",
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColor.grey,
-                      size: 18,
-                    ),
-                    onTap: () {},
+                  ProfileTile(
+                    title: "Language",
+                    icon: Icons.language,
+                    onTap: () {
+                      Get.toNamed(AppRoutes.language);
+                    },
                   ),
                 ],
               ),
@@ -210,6 +101,37 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ProfileTile extends StatelessWidget {
+  const ProfileTile({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.onTap,
+  });
+
+  final String title;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      shape: Border(bottom: BorderSide(color: AppColor.lightGrey)),
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(icon, color: AppColor.grey),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: AppColor.textColor,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      trailing: Icon(Icons.arrow_forward_ios, color: AppColor.grey, size: 18),
+      onTap: onTap,
     );
   }
 }
